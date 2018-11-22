@@ -1,0 +1,30 @@
+LIBRARY SpringScriptEngine
+
+EXPORTS
+	SpringScript_CreateInstance
+	SpringScript_DestroyInstance
+	SpringScript_SetErrorCallbk
+	SpringScript_Load
+	SpringScript_Run
+	SpringScript_Break
+	SpringScript_Exit
+	SpringScript_RegisterCommand
+	SpringScript_UnregisterCommand
+	SpringScript_GoTo
+	SpringScript_GetPostion
+	SpringScript_GetPostionLH
+	SpringScript_SetPostion
+	SpringScript_SetPostionForce
+	SpringScript_GetLineNum
+	SpringScript_Eval
+	SpringScript_Evalf
+	SpringScript_GetCmdArgCount
+	SpringScript_GetCmdArgType
+	SpringScript_GetCmdArgPtr
+	SpringScript_GetVarValInt
+	SpringScript_GetVarValStr
+	SpringScript_GetVarValStrLen
+	SpringScript_GetVarValFloat
+	SpringScript_GetVarValHnd
+	SpringScript_GetVarValRef
+	SpringScript_SetVarVal
