@@ -10,6 +10,11 @@ typedef struct { int unused; } *HSPRINGSCRIPT;
 typedef struct { int unused; } *HSPRINGSCRIPTVAR;
 #endif
 
+/*! @param ‘æˆêˆø” nErrorID
+@param ‘æ“ñˆø” nLine
+@param ‘æOˆø” sFilePath
+@param ‘ælˆø” pUserData
+*/
 typedef int(*ErrorCallbk)(int, int, const char*, void*);
 
 #define DLLEXPORT extern "C" __declspec(dllexport)
@@ -47,14 +52,14 @@ DLLEXPORT BOOL SpringScript_Load(HSPRINGSCRIPT hSpringScript, const char *pszFil
 */
 DLLEXPORT BOOL SpringScript_Run(HSPRINGSCRIPT hSpringScript);
 
-/*! @brief ƒXƒNƒŠƒvƒg‚ÌÀs‚ğ’†~
+/*! @brief ƒXƒNƒŠƒvƒg‚ÌÀs‚ğ’†~<br>
 ƒXƒNƒŠƒvƒgÀs’†‚ÉSpringScript_RunŠÖ”‚ğŒÄ‚Ño‚µ‚½ê‡‚ÍAÅŒã‚ÉŒÄ‚Ño‚µ‚½SpringScript_RunŠÖ”‚ÌÀs‚ğ’†~‚µ‚Ü‚·B
 @param[in] hSpringScript SpringScriptEngine‚Ìƒnƒ“ƒhƒ‹
 @return ¸”s‚µ‚½‚Æ‚«FALSEA¬Œ÷‚µ‚½‚Æ‚«‚ÍFALSEˆÈŠOB
 */
 DLLEXPORT BOOL SpringScript_Break(HSPRINGSCRIPT hSpringScript);
 
-/*! @brief ƒXƒNƒŠƒvƒg‚ÌÀs‚ğ‚·‚×‚Ä’†~
+/*! @brief ƒXƒNƒŠƒvƒg‚ÌÀs‚ğ‚·‚×‚Ä’†~<br>
 ƒXƒNƒŠƒvƒgÀs’†‚ÉŒÄ‚Ño‚µ‚½SpringScript_RunŠÖ”‚ğŠÜ‚ßA‚·‚×‚Ä‚ÌÀs‚ğ’†~‚µ‚Ü‚·B
 @param[in] hSpringScript SpringScriptEngine‚Ìƒnƒ“ƒhƒ‹
 @return ¸”s‚µ‚½‚Æ‚«FALSEA¬Œ÷‚µ‚½‚Æ‚«‚ÍFALSEˆÈŠOB
@@ -64,8 +69,8 @@ DLLEXPORT BOOL SpringScript_Exit(HSPRINGSCRIPT hSpringScript);
 /*! @brief –½—ß‚ğ“o˜^
 @param[in] hSpringScript SpringScriptEngine‚Ìƒnƒ“ƒhƒ‹
 @param[in] pszName –½—ß‚Ì–¼‘O(NULL•s‰Â)
-@param[in] pszPrm –½—ß‚Ìˆø”(NULL•s‰Â)
-ˆø”‚ÌŒ^‚ğ¦‚·‹L†[i = Integer / f = Float / s = String / v = Variable / . = ‰Â•Ï’·ˆø”]
+@param[in] pszPrm –½—ß‚Ìˆø”(NULL•s‰Â)<br>
+ˆø”‚ÌŒ^‚ğ¦‚·‹L†[i = Integer / f = Float / s = String / v = Variable / . = ‰Â•Ï’·ˆø”]<br>
 —á)uInteger, String, Float, Integer, ...v‚Ì‰Â•Ï’·ˆø”‚É‚µ‚½‚¢ê‡‚ÍAuisfi.v‚Æİ’è‚µ‚Ü‚·B
 @param[in] pFunc ŒÄ‚Ño‚·ƒR[ƒ‹ƒoƒbƒNŠÖ”(NULL•s‰Â)
 @param[in] pUserData ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ÌŒÄ‚Ño‚µ‚É“n‚³‚ê‚éƒ†[ƒU[’è‹`‚Ì’l(NULL‰Â)
@@ -94,7 +99,7 @@ DLLEXPORT BOOL SpringScript_GoTo(HSPRINGSCRIPT hSpringScript, const char *pszLab
 */
 DLLEXPORT BOOL SpringScript_GetPostion(HSPRINGSCRIPT hSpringScript, PostionInfo *pi);
 
-/*! @brief ‰ğÍ’†‚ÌƒXƒNƒŠƒvƒg‚ÌˆÊ’u‚ğæ“¾2
+/*! @brief ‰ğÍ’†‚ÌƒXƒNƒŠƒvƒg‚ÌˆÊ’u‚ğæ“¾2<br>
 SpringScript_GetPostionŠÖ”‚Æˆá‚¢Aæ“ª‚©‚ç‚Ìƒoƒbƒtƒ@ˆÊ’u‚ğ¦‚·PostionInfo.uPos‚És‚Ì“ª‚ÌˆÊ’u‚ğŠi”[‚µ‚Ü‚·B
 @param[in] hSpringScript SpringScriptEngine‚Ìƒnƒ“ƒhƒ‹
 @param[out] pi PostionInfo\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^(NULL•s‰Â)
@@ -102,7 +107,7 @@ SpringScript_GetPostionŠÖ”‚Æˆá‚¢Aæ“ª‚©‚ç‚Ìƒoƒbƒtƒ@ˆÊ’u‚ğ¦‚·PostionInfo.uPos‚
 */
 DLLEXPORT BOOL SpringScript_GetPostionLH(HSPRINGSCRIPT hSpringScript, PostionInfo *pi);
 
-/*! @brief ‰ğÍ’†‚ÌƒXƒNƒŠƒvƒg‚ÌˆÊ’u‚ğˆÚ“®
+/*! @brief ‰ğÍ’†‚ÌƒXƒNƒŠƒvƒg‚ÌˆÊ’u‚ğˆÚ“®<br>
 ƒTƒuƒ‹[ƒ`ƒ“ƒWƒƒƒ“ƒv‚Ì•œ‹A‚È‚Ç‚Ég—p‚µ‚Ü‚·B
 @param[in] hSpringScript SpringScriptEngine‚Ìƒnƒ“ƒhƒ‹
 @param[in] pi PostionInfo\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^(NULL•s‰Â)
@@ -110,8 +115,8 @@ DLLEXPORT BOOL SpringScript_GetPostionLH(HSPRINGSCRIPT hSpringScript, PostionInf
 */
 DLLEXPORT BOOL SpringScript_SetPostion(HSPRINGSCRIPT hSpringScript, const PostionInfo *pi);
 
-/*! @brief ‰ğÍ’†‚ÌƒXƒNƒŠƒvƒg‚ÌˆÊ’u‚ğˆÚ“®
-SpringScript_SetPostionŠÖ”‚Æˆá‚¢A”ò‚ñ‚¾æ‚Ìs‚ğ–³‹‚µ‚ÄŸ‚Ìs‚©‚çŠJn‚µ‚Ü‚·B
+/*! @brief ‰ğÍ’†‚ÌƒXƒNƒŠƒvƒg‚ÌˆÊ’u‚ğˆÚ“®<br>
+SpringScript_SetPostionŠÖ”‚Æˆá‚¢A”ò‚ñ‚¾æ‚Ìs‚ğ–³‹‚µ‚ÄŸ‚Ìs‚©‚çŠJn‚µ‚Ü‚·B<br>
 (PostionInfo\‘¢‘Ì‚Ì’l‚ª‚»‚Ì‚Ü‚Üg‚í‚ê‚é)
 @param[in] hSpringScript SpringScriptEngine‚Ìƒnƒ“ƒhƒ‹
 @param[in] pi PostionInfo\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^(NULL•s‰Â)
@@ -134,7 +139,7 @@ DLLEXPORT BOOL SpringScript_GetLineNum(HSPRINGSCRIPT hSpringScript, size_t *pVal
 */
 DLLEXPORT BOOL SpringScript_Eval(HSPRINGSCRIPT hSpringScript, const char *pszExpression, int *out);
 
-/*! @brief ”®‚ğŒvZ(float)
+/*! @brief ”®‚ğŒvZ(float)<br>
 SpringScript_EvalŠÖ”‚Æˆá‚¢AŒ‹‰Ê‚ğfloat‚Åo—Í‚µ‚Ü‚·B
 @param[in] hSpringScript SpringScriptEngine‚Ìƒnƒ“ƒhƒ‹
 @param[in] pszExpression ŒvZ®
@@ -156,7 +161,7 @@ DLLEXPORT UINT SpringScript_GetCmdArgCount(const CommandArg *arg);
 */
 DLLEXPORT CVariableMan::VarType SpringScript_GetCmdArgType(CommandArg *arg, int index);
 
-/*! @brief –½—ß‚Ìˆø”‚ÉƒAƒNƒZƒX‚é‚½‚ß‚Ìƒnƒ“ƒhƒ‹‚ğæ“¾
+/*! @brief –½—ß‚Ìˆø”‚ÉƒAƒNƒZƒX‚é‚½‚ß‚Ìƒnƒ“ƒhƒ‹‚ğæ“¾<br>
 ‚±‚ÌŠÖ”‚ğg—p‚µ‚ÄASpringScript_GetVarValŒn‚ÆSpringScript_SetVarValŠÖ”‚Åˆø”‚ğ‘€ì‚Å‚«‚é‚æ‚¤‚É‚È‚è‚Ü‚·B
 @param[in] arg CommandArg\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
 @param[in] index ˆø”‚ÌˆÊ’u
@@ -164,14 +169,14 @@ DLLEXPORT CVariableMan::VarType SpringScript_GetCmdArgType(CommandArg *arg, int 
 */
 DLLEXPORT HSPRINGSCRIPTVAR SpringScript_GetCmdArgPtr(CommandArg *arg, int index);
 
-/*! @brief IntegerŒ^‚Ì•Ï”‚Ì’l‚ğæ“¾
+/*! @brief IntegerŒ^‚Ì•Ï”‚Ì’l‚ğæ“¾<br>
 SpringScript_GetCmdArgPtrŠÖ”‚Åæ“¾‚µ‚½ˆø”‚Ì‘€ì‚É‚àg—p‚Å‚«‚Ü‚·B
 @param[in] var HSPRINGSCRIPTVARƒnƒ“ƒhƒ‹(NULL•s‰Â)
 @return æ“¾‚µ‚½’l
 */
 DLLEXPORT INT SpringScript_GetVarValInt(HSPRINGSCRIPTVAR *var);
 
-/*! @brief StringŒ^‚Ì•Ï”‚Ì“à—e‚ğæ“¾
+/*! @brief StringŒ^‚Ì•Ï”‚Ì“à—e‚ğæ“¾<br>
 SpringScript_GetCmdArgPtrŠÖ”‚Åæ“¾‚µ‚½ˆø”‚Ì‘€ì‚É‚àg—p‚Å‚«‚Ü‚·B
 @param[in] var HSPRINGSCRIPTVARƒnƒ“ƒhƒ‹(NULL•s‰Â)
 @param[out] lpString •¶š—ñ‚ğ‘‚­‚Ì‚·‚éƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^(NULL•s‰Â)
@@ -180,35 +185,35 @@ SpringScript_GetCmdArgPtrŠÖ”‚Åæ“¾‚µ‚½ˆø”‚Ì‘€ì‚É‚àg—p‚Å‚«‚Ü‚·B
 */
 DLLEXPORT BOOL SpringScript_GetVarValStr(HSPRINGSCRIPTVAR *var, char *lpString, int nMaxCount);
 
-/*! @brief StringŒ^‚Ì•Ï”‚Ì“à—e‚Ì’·‚³‚ğæ“¾
+/*! @brief StringŒ^‚Ì•Ï”‚Ì“à—e‚Ì’·‚³‚ğæ“¾<br>
 SpringScript_GetCmdArgPtrŠÖ”‚Åæ“¾‚µ‚½ˆø”‚Ì‘€ì‚É‚àg—p‚Å‚«‚Ü‚·B
 @param[in] var HSPRINGSCRIPTVARƒnƒ“ƒhƒ‹(NULL•s‰Â)
 @return •¶š—ñ‚Ì’·‚³
 */
 DLLEXPORT INT SpringScript_GetVarValStrLen(HSPRINGSCRIPTVAR *var);
 
-/*! @brief FloatŒ^‚Ì•Ï”‚Ì’l‚ğæ“¾
+/*! @brief FloatŒ^‚Ì•Ï”‚Ì’l‚ğæ“¾<br>
 SpringScript_GetCmdArgPtrŠÖ”‚Åæ“¾‚µ‚½ˆø”‚Ì‘€ì‚É‚àg—p‚Å‚«‚Ü‚·B
 @param[in] var HSPRINGSCRIPTVARƒnƒ“ƒhƒ‹(NULL•s‰Â)
 @return æ“¾‚µ‚½’l
 */
 DLLEXPORT FLOAT SpringScript_GetVarValFloat(HSPRINGSCRIPTVAR *var);
 
-/*! @brief HandleŒ^‚Ì•Ï”‚Ì’l‚ğæ“¾
+/*! @brief HandleŒ^‚Ì•Ï”‚Ì’l‚ğæ“¾<br>
 SpringScript_GetCmdArgPtrŠÖ”‚Åæ“¾‚µ‚½ˆø”‚Ì‘€ì‚É‚àg—p‚Å‚«‚Ü‚·B
 @param[in] var HSPRINGSCRIPTVARƒnƒ“ƒhƒ‹(NULL•s‰Â)
 @return æ“¾‚µ‚½’l
 */
 DLLEXPORT INT SpringScript_GetVarValHnd(HSPRINGSCRIPTVAR *var);
 
-/*! @brief VariableŒ^(QÆ)‚Ì•Ï”‚Ì’l‚ğæ“¾
+/*! @brief VariableŒ^(QÆ)‚Ì•Ï”‚Ì’l‚ğæ“¾<br>
 SpringScript_GetCmdArgPtrŠÖ”‚Åæ“¾‚µ‚½ˆø”‚Ì‘€ì‚É‚àg—p‚Å‚«‚Ü‚·B
 @param[in] var HSPRINGSCRIPTVARƒnƒ“ƒhƒ‹(NULL•s‰Â)
 @return HSPRINGSCRIPTVARƒnƒ“ƒhƒ‹(¸”s:NULL)
 */
 DLLEXPORT HSPRINGSCRIPTVAR SpringScript_GetVarValRef(HSPRINGSCRIPTVAR *var);
 
-/*! @brief •Ï”‚Ì’l‚ğİ’è
+/*! @brief •Ï”‚Ì’l‚ğİ’è<br>
 SpringScript_GetCmdArgPtrŠÖ”‚Åæ“¾‚µ‚½ˆø”‚Ì‘€ì‚É‚àg—p‚Å‚«‚Ü‚·B
 @param[in] var HSPRINGSCRIPTVARƒnƒ“ƒhƒ‹(NULL•s‰Â)
 @param[in] val ’l‚Ìƒ|ƒCƒ“ƒ^
