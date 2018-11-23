@@ -1,3 +1,7 @@
+/*! @file CScriptEngine.cpp
+@brief スクリプトエンジン本体のソースコード。
+*/
+
 #include "CScriptEngine.h"
 
 using namespace std;
@@ -17,8 +21,10 @@ CScriptEngine::CScriptEngine() :
 CScriptEngine::~CScriptEngine() {
 }
 
-//スクリプトを読み込み
-//	const char *sFilename	:	読み込むファイル名
+/*! @brief スクリプトを読み込み
+@param[in] sFilename 読み込むファイル名
+@return 成功時true、失敗時false。
+*/
 bool CScriptEngine::Load(const char *sFilename) {
 	ifstream ifs;
 	stringstream ss;
@@ -41,7 +47,9 @@ bool CScriptEngine::Load(const char *sFilename) {
 	return true;
 }
 
-//スクリプトを実行
+/*! @brief スクリプトを実行
+@return 常にtrue
+*/
 bool CScriptEngine::Run() {
 	size_t &at = m_PosInfo.uPos;
 	size_t &spos = m_uSPos;	//行の開始位置
@@ -88,7 +96,10 @@ bool CScriptEngine::Run() {
 	return true;
 }
 
-//全てのラベルをチェック
+/*! @brief 全てのラベルをチェック
+@return 常にtrue
+@todo std::mapに変更したい
+*/
 bool CScriptEngine::CheckAllLabels() {
 	size_t at = 0;
 	size_t spos = 0;		//行の開始位置
@@ -119,11 +130,13 @@ bool CScriptEngine::CheckAllLabels() {
 	return true;
 }
 
-//命令を登録
-//	const string &name	:	命令の名前
-//	const string &prm	:	引数リスト(i = Integer / f = Float / s = String / v = Variable / . = 可変長引数)
-//	seCOMMAND pFunc		:	呼び出される関数
-//	void *arg			:	ユーザー定義値
+/*! @brief 命令を登録
+@param[in] name 命令の名前
+@param[in] prm 引数リスト(i = Integer / f = Float / s = String / v = Variable / . = 可変長引数)
+@param[in] pFunc 呼び出される関数
+@param[in] arg ユーザー定義値
+@return 成功時true、失敗時false。
+*/
 bool CScriptEngine::RegisterCommand(const string &name, const string &prm, seCOMMAND pFunc, void *arg) {
 	static CommandInfo ci;
 
@@ -141,10 +154,11 @@ bool CScriptEngine::RegisterCommand(const string &name, const string &prm, seCOM
 	return true;
 }
 
-//命令を削除
-//	const string &name	:	削除する命令の名前
-//
-//*Note : 全ての同じ名前の命令が削除されることに注意
+/*! @brief 命令を削除
+@param[in] name 削除する命令の名前
+@return 成功時true、失敗時false。
+@note 全ての同じ名前の命令が削除されることに注意
+*/
 bool CScriptEngine::UnregisterCommand(const string &name) {
 	//関数名が名無しの時は弾く
 	if (name.length() == 0)
@@ -160,6 +174,13 @@ bool CScriptEngine::UnregisterCommand(const string &name) {
 	return true;
 }
 
+/*! @brief ラベルジャンプ
+@param[in] sLabel ラベル名
+@param[in] bEvent イベント発火によるジャンプかどうか
+@return 成功時true、失敗時false。
+@note waitなどの待機命令内でイベントを処理する時でラベルジャンプした後に
+CScriptEngine::Run()を実行する場合に、bEventとtrueにします。
+*/
 bool CScriptEngine::GoTo(const string &sLabel, bool bEvent) {
 	bool bSuccess = false;
 	if (sLabel[0] == '@') { //nつ次のラベルに飛ぶ
@@ -198,7 +219,11 @@ bool CScriptEngine::GoTo(const string &sLabel, bool bEvent) {
 }
 
 #define IsSpace(_c) (_c == ' ' || _c == '\t')
-//行を解析
+/*! @brief 行を解析
+@param[in] sLine 1行の文字列
+@param[out] cmdInfo 命令データー
+@return 常にtrue
+*/
 bool CScriptEngine::AnalyzeCommand(const string &sLine, CommandArg &cmdInfo) {
 	size_t at = 0;
 	size_t uLength = sLine.length();
@@ -272,7 +297,11 @@ bool CScriptEngine::AnalyzeCommand(const string &sLine, CommandArg &cmdInfo) {
 	return true;
 }
 
-//引数を解析
+/*! @brief 引数を解析
+@param[in] rawData 引数の生データー
+@param[out] v 処理された引数データー
+@return 空引数だった場合はfalse、それ以外はtrue
+*/
 bool CScriptEngine::AnalyzeArgument(const string &rawData, CVariableMan &v) {
 	size_t at = 0;
 	size_t uLength = rawData.length();
@@ -440,7 +469,10 @@ bool CScriptEngine::AnalyzeArgument(const string &rawData, CVariableMan &v) {
 	return bStarted;
 }
 
-//命令を呼び出す
+/*! @brief 命令を呼び出す
+@param[in] cmdInfo 呼び出す命令のデーター
+@return 成功時true、失敗時false。
+*/
 bool CScriptEngine::CallCommand(CommandArg &cmdInfo) {
 	bool bMatched = false;
 	size_t index = 0;
@@ -533,12 +565,16 @@ bool CScriptEngine::CallCommand(CommandArg &cmdInfo) {
 	return true;
 }
 
-//逆ポーランド記法に変換
 typedef struct {
-	int pri;
-	char op;
-	bool eq;
+	int pri; //!< 優先度
+	char op; //!< 演算子
+	bool eq; //!< 等号が付いているか
 } RPN_op;
+
+/*! @brief 逆ポーランド記法に変換
+@param[in] expression 式
+@param[out] output 結果
+*/
 void MakeRPN(const string &expression, string &output) {
 	string out;				//出力
 	vector<RPN_op> stack;	//スタック
@@ -643,6 +679,10 @@ void MakeRPN(const string &expression, string &output) {
 	return;
 }
 
+/*! @brief 数値かどうかを調べる 
+@param[in] s 文字列型の数値
+@return 数値である場合true、それ以外false
+*/
 bool IsDigitString(const string &s) {
 	auto i = s.begin();
 	while (i != s.end()) {
@@ -656,12 +696,18 @@ bool IsDigitString(const string &s) {
 	return true;
 }
 
-//文字列の数式を評価(int)
+/*! @brief 文字列の数式を評価(int)
+@param[in] 式
+@return 結果
+*/
 int CScriptEngine::Eval_i(const string &expression) {
 	return (int)Eval_f(expression);
 }
 
-//文字列の数式を評価(float)
+/*! @brief 文字列の数式を評価(float)
+@param[in] 式
+@return 結果
+*/
 float CScriptEngine::Eval_f(const string &expression) {
 	vector<float> stack;	//スタック
 	char cNow = 0;		//現在の文字

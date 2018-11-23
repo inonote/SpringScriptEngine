@@ -1,3 +1,7 @@
+/*! @file CVariableMan.cpp
+@brief •Ï”‚ğŠÇ—‚·‚éƒNƒ‰ƒX
+*/
+
 #include "CVariableMan.h"
 using namespace std;
 CVariableMan::CVariableMan() {

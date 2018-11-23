@@ -1,4 +1,14 @@
+/*! @file CErrorMan.h
+@brief エラーキャッチ用クラス。
+*/
+
 #pragma once
+
+/*! @param 第一引数 nErrorID
+@param 第二引数 nLine
+@param 第三引数 sFilePath
+@param 第四引数 pUserData
+*/
 typedef int(*ErrorCallbk)(int, int, const char*, void*);
 
 #define ERRORID_NONE				0x0000	//!< エラーなし
@@ -15,25 +25,34 @@ typedef int(*ErrorCallbk)(int, int, const char*, void*);
 class CErrorMan {
 public:
 	CErrorMan(HWND hOwnerWnd = NULL);
-	inline void SetWindow(HWND hOwnerWnd = NULL) { m_hWnd = hOwnerWnd; };
 	bool ChachError(int nErrorID, int nLine, const char *sFilePath, const char* sOptionalText = NULL);
 
 private:
 	ErrorCallbk m_pCallBk;
-	HWND m_hWnd;
-	void *m_pUserData;
+	HWND m_hWnd;		//!< オーナーウィンドウハンドル
+	void *m_pUserData;	//!< ユーザー定義値
 
 public:
+	/*! @brief エラーをキャッチしたときに呼び出されるコールバック関数を設定します。
+	@param[in] pFunc コールバック関数へのポインタ
+	@param[in] pUserData ユーザー定義値　
+	*/
 	inline void SetCallBk(ErrorCallbk pFunc, void* pUserData) {
 		m_pCallBk = pFunc;
 		m_pUserData = pUserData;
 	};
+
+	//!< 設定したコールバック関数を取得
 	inline ErrorCallbk GetCallBk() {
 		return m_pCallBk;
 	};
+
+	//! @brief オーナーウィンドウを設定
 	inline void SetOwnerWnd(HWND hOwnerWnd) {
 		m_hWnd = hOwnerWnd;
 	};
+
+	//! @brief オーナーウィンドウを取得
 	inline HWND GetOwnerWnd() {
 		return m_hWnd;
 	};

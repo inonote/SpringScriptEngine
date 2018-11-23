@@ -1,6 +1,9 @@
+/*! @file CVariableMan.h
+@brief 変数を管理するクラス
+*/
+
 #pragma once
 
-//変数を管理するクラス
 class CVariableMan
 {
 public:
@@ -11,12 +14,12 @@ public:
 	typedef CVariableMan	*neVariable,	**nepVariable;
 
 	enum VarType {
-		VARTYPE_INTEGER,	//整数
-		VARTYPE_STRING,		//文字列
-		VARTYPE_FLOAT,		//実数
-		VARTYPE_HANDLE,		//ハンドル
-		VARTYPE_VARIABLE,	//変数(参照)
-		VARTYPE_UNKNOWN,	//不明
+		VARTYPE_INTEGER,	//!< 整数
+		VARTYPE_STRING,		//!< 文字列
+		VARTYPE_FLOAT,		//!< 実数
+		VARTYPE_HANDLE,		//!< ハンドル
+		VARTYPE_VARIABLE,	//!< 変数(参照)
+		VARTYPE_UNKNOWN,	//!< 不明
 		VARTYPE_LAST,
 		VARTYPE_FIRST = VARTYPE_INTEGER
 	};
@@ -45,7 +48,6 @@ public:
 	bool operator==(const CVariableMan &o);
 	bool operator!=(const CVariableMan &o);
 
-	//取得
 	void* GetData();
 	inline VarType GetType() { return m_type; };
 	inline const std::string* GetName() { return &m_sVarName; };
@@ -53,14 +55,14 @@ public:
 private:
 	void Release();
 
-	VarType	m_type;						//変数の種類
-	std::string	m_sVarName;					//変数名
+	VarType	m_type;						//!< 変数の種類
+	std::string	m_sVarName;				//!< 変数名
 
-	nepString	m_pData_str = NULL;		//文字列型変数用データー
-	nepInteger	m_pData_int = NULL;		//整数型変数用データー
-	nepFloat	m_pData_float = NULL;	//実数型変数用データー
-	nepHandle	m_pData_handle = NULL;	//ハンドル型変数用データー
-	neVariable	m_pData_var = NULL;		//変数参照型用データー
+	nepString	m_pData_str = NULL;		//!< 文字列型変数用データー
+	nepInteger	m_pData_int = NULL;		//!< 整数型変数用データー
+	nepFloat	m_pData_float = NULL;	//!< 実数型変数用データー
+	nepHandle	m_pData_handle = NULL;	//!< ハンドル型変数用データー
+	neVariable	m_pData_var = NULL;		//!< 変数参照型用データー
 };
 
 #define GetVarPtrFromArg(_arg, _index) ((CVariableMan::neVariable)(_arg).ArgList[_index].GetData())

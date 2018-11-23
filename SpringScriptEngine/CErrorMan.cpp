@@ -1,3 +1,7 @@
+/*! @file CErrorMan.cpp
+@brief エラーキャッチ用クラス。
+*/
+
 #include "CErrorMan.h"
 
 CErrorMan::CErrorMan(HWND hOwnerWnd) :
@@ -7,9 +11,14 @@ CErrorMan::CErrorMan(HWND hOwnerWnd) :
 	m_hWnd = hOwnerWnd;
 }
 
-//エラーをキャッチする関数
-//Note: エラーメッセージ表示後、SetCallBk関数で登録したコールバック関数が呼び出されるので、
-//      そこでプログラムを終了するかの判定を行う。
+/*! @brief エラーをキャッチする関数
+@param[in] nErrorID エラーID(ERRORID_*)
+@param[in] nLine エラー発生行
+@param[in] sFilePath エラーが発生したファイル
+@param[in] sOptionalText オプションテキスト(NULL可)
+@return 常にtrue
+@note エラーメッセージ表示後、SetCallBk関数で登録したコールバック関数が呼び出されるので、そこでプログラムを終了するかの判定を行う。
+*/
 
 bool CErrorMan::ChachError(int nErrorID, int nLine, const char *sFilePath, const char *sOptionalText){
 	char sErrorMsg[0x200];
