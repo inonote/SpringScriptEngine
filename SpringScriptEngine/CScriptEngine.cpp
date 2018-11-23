@@ -179,7 +179,7 @@ bool CScriptEngine::UnregisterCommand(const string &name) {
 @param[in] bEvent イベント発火によるジャンプかどうか
 @return 成功時true、失敗時false。
 @note waitなどの待機命令内でイベントを処理する時でラベルジャンプした後に
-CScriptEngine::Run()を実行する場合に、bEventとtrueにします。
+CScriptEngine::Run()を実行する場合に、bEventをtrueにします。
 */
 bool CScriptEngine::GoTo(const string &sLabel, bool bEvent) {
 	bool bSuccess = false;
