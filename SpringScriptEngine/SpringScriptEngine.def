@@ -11,6 +11,7 @@ EXPORTS
 	SpringScript_RegisterCommand
 	SpringScript_UnregisterCommand
 	SpringScript_GoTo
+	SpringScript_GoTo_Event
 	SpringScript_GetPostion
 	SpringScript_GetPostionLH
 	SpringScript_SetPostion

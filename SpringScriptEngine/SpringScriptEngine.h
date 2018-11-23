@@ -38,12 +38,12 @@ typedef struct tagPostionInfo {
 
 //! @brief 変数の型
 enum VarType {
-	VARTYPE_INTEGER,	//整数
-	VARTYPE_STRING,		//文字列
-	VARTYPE_FLOAT,		//実数
-	VARTYPE_HANDLE,		//ハンドル
-	VARTYPE_VARIABLE,	//変数(参照)
-	VARTYPE_UNKNOWN,	//不明
+	VARTYPE_INTEGER,	//!< 整数
+	VARTYPE_STRING,		//!< 文字列
+	VARTYPE_FLOAT,		//!< 実数
+	VARTYPE_HANDLE,		//!< ハンドル
+	VARTYPE_VARIABLE,	//!< 変数(参照)
+	VARTYPE_UNKNOWN,	//!< 不明
 	VARTYPE_LAST,
 	VARTYPE_FIRST = VARTYPE_INTEGER
 };
@@ -78,6 +78,7 @@ DLLFUNC BOOL SpringScript_Exit(HSPRINGSCRIPT hSpringScript);
 DLLFUNC BOOL SpringScript_RegisterCommand(HSPRINGSCRIPT hSpringScript, const char *pszName, const char *pszPrm, CommandCallbk pFunc, void *pUserData);
 DLLFUNC BOOL SpringScript_UnregisterCommand(HSPRINGSCRIPT hSpringScript, const char *pszName);
 DLLFUNC BOOL SpringScript_GoTo(HSPRINGSCRIPT hSpringScript, const char *pszLabel);
+DLLFUNC BOOL SpringScript_GoTo_Event(HSPRINGSCRIPT hSpringScript, const char *pszLabel);
 DLLFUNC BOOL SpringScript_GetPostion(HSPRINGSCRIPT hSpringScript, PostionInfo *pi);
 DLLFUNC BOOL SpringScript_GetPostionLH(HSPRINGSCRIPT hSpringScript, PostionInfo *pi);
 DLLFUNC BOOL SpringScript_SetPostion(HSPRINGSCRIPT hSpringScript, const PostionInfo *pi);
