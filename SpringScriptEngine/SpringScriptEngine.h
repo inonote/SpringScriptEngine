@@ -48,7 +48,7 @@ enum VarType {
 	VARTYPE_FIRST = VARTYPE_INTEGER
 };
 
-/*! エラー発生時に呼び出されるコールバック関数
+/*! @brief エラー発生時に呼び出されるコールバック関数
 @param 第一引数 エラーID
 @param 第二引数 エラー発生行
 @param 第三引数 エラーが発生したファイル
