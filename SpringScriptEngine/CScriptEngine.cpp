@@ -182,6 +182,9 @@ bool CScriptEngine::UnregisterCommand(const string &name) {
 CScriptEngine::Run()を実行する場合に、bEventをtrueにします。
 */
 bool CScriptEngine::GoTo(const string &sLabel, bool bEvent) {
+	if (sLabel.length() == 0)
+		return false;
+
 	bool bSuccess = false;
 	if (sLabel[0] == '@') { //nつ次のラベルに飛ぶ
 		size_t i = 0;
