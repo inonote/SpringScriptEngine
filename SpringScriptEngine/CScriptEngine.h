@@ -74,11 +74,7 @@ private:
 	std::vector<CVariableMan> m_varList; //!< 変数バッファ
 	std::vector<CommandInfo> m_cmdlist; //!< 命令リスト
 
-	typedef struct {
-		PostionInfo pos;	//!< 位置
-		std::string sLabel;	//!< ラベルの名前
-	} LabelInfo;
-	std::vector<LabelInfo> m_labelList; //!< ラベルリスト
+	std::map<std::string, PostionInfo> m_label; //!< ラベルリスト
 
 	bool CheckAllLabels();
 	bool AnalyzeCommand(const std::string &sLine, CommandArg &cmdInfo);

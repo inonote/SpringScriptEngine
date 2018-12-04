@@ -42,7 +42,7 @@ bool CScriptEngine::Load(const char *sFilename) {
 	m_uBufSize = m_Buf.length();
 
 	m_sFilename = sFilename;
-	m_labelList.clear();
+	m_label.clear();
 	CheckAllLabels();
 	return true;
 }
@@ -105,20 +105,19 @@ bool CScriptEngine::CheckAllLabels() {
 	size_t spos = 0;		//行の開始位置
 	size_t uLine = 0;		//行番号
 	CommandArg cmdInfo;		//コマンド情報を格納する
-	LabelInfo labelInfo;
+	PostionInfo pi;
 	char cPrevChar = 0;		//前の文字
 
-	m_labelList.clear();
+	m_label.clear();
 	while (at < m_uBufSize) {
 		if (m_Buf[at] == 0x0D || m_Buf[at] == 0x0A) { //改行文字が来た時に行を解析させる
 			if (at > 0 && !(m_Buf[at] == 0x0A && cPrevChar == 0x0D)) { //改行コードがCRLFの時の2バイト目回避処理
 				AnalyzeCommand(m_Buf.substr(spos, at - spos), cmdInfo);
 				if (cmdInfo.commandName.length() > 1 && cmdInfo.commandName[0] == '*') {
 					//ラベルリストに登録
-					labelInfo.pos.uPos = spos;
-					labelInfo.pos.uLine = uLine;
-					labelInfo.sLabel = cmdInfo.commandName.substr(1, string::npos);
-					m_labelList.push_back(labelInfo);
+					pi.uPos = spos;
+					pi.uLine = uLine;
+					m_label.insert(make_pair(cmdInfo.commandName.substr(1, string::npos), pi));
 				}
 				uLine++;
 			}
@@ -185,40 +184,21 @@ bool CScriptEngine::GoTo(const string &sLabel, bool bEvent) {
 	if (sLabel.length() == 0)
 		return false;
 
-	bool bSuccess = false;
-	if (sLabel[0] == '@') { //nつ次のラベルに飛ぶ
-		size_t i = 0;
-		size_t uCount = sLabel.length();
-		for (auto itr = m_labelList.begin(); itr != m_labelList.end(); itr++) {
-			if (itr->pos.uLine > GetPostion().uLine) {
-				i++;
-				if (i >= uCount) {
-					if (bEvent)
-						SetPostionForce(itr->pos);
-					else
-						SetPostion(itr->pos);
-					bSuccess = true;
-					break;
-				}
-			}
-		}
+	PostionInfo pi;
+	
+	try {
+		pi = m_label.at(sLabel);
 	}
-	else {
-		for (auto itr = m_labelList.begin(); itr != m_labelList.end(); itr++) {
-			if (itr->sLabel == sLabel) {
-				if (bEvent)
-					SetPostionForce(itr->pos);
-				else
-					SetPostion(itr->pos);
-				bSuccess = true;
-				break;
-			}
-		}
-	}
-	if (!bSuccess) {
+	catch (std::out_of_range) { //ラベルが見つからない
 		m_em.ChachError(ERRORID_LABELNOTEXIST, m_PosInfo.uLine, m_sFilename.c_str());
+		return false;
 	}
-	return bSuccess;
+
+	if (bEvent)
+		SetPostionForce(pi);
+	else
+		SetPostion(pi);
+	return true;
 }
 
 #define IsSpace(_c) (_c == ' ' || _c == '\t')

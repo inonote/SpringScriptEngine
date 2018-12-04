@@ -58,7 +58,13 @@ bool CErrorMan::ChachError(int nErrorID, int nLine, const char *sFilePath, const
 		sprintf_s(sBuf, 0x300, "%s\n#%d 行:%d(%s)\n\n詳細:\n%s", sErrorMsg, nErrorID, nLine + 1, sFilePath, sOptionalText);
 	else
 		sprintf_s(sBuf, 0x300, "%s\n#%d 行:%d(%s)\n\n", sErrorMsg, nErrorID, nLine+1, sFilePath);
+
+#ifdef _SSE_WINDOWS
 	MessageBox(m_hWnd, sBuf, "Error", MB_ICONERROR);
+#else
+	printf("%s", sBuf);
+#endif // _SSE_WINDOWS
+
 	if (m_pCallBk) {
 		m_pCallBk(nErrorID, nLine, sFilePath, m_pUserData); //エラー処理後用のコールバック関数を呼び出す
 	}
