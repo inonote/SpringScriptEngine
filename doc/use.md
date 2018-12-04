@@ -1,6 +1,6 @@
 ## 使い方
 <a href="https://github.com/inonote/SpringScriptEngine/releases">Releases</a>から最新版をダウンロードし、C++の場合は`SpringScriptEngine.dll`、`SpringScriptEngine.h`、`SpringScriptEngine.lib`を、HSPの場合は`SpringScriptEngine.dll`、`SpringScriptEngine.as`を使いたいプログラムのソースコードフォルダにコピーします。  
-ライブラリの関数のリファレスは、<a href="a00026.html">ここにあります</a>。
+ライブラリの関数のリファレスは、<a href="a00032.html">ここにあります</a>。
 
 ## 基本的なコード  
 *C(C++)*

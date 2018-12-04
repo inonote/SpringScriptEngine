@@ -96,6 +96,7 @@ DLLFUNC INT SpringScript_GetVarValInt(HSPRINGSCRIPTVAR var);
 DLLFUNC BOOL SpringScript_GetVarValStr(HSPRINGSCRIPTVAR var, char *lpString, int nMaxCount);
 DLLFUNC INT SpringScript_GetVarValStrLen(HSPRINGSCRIPTVAR var);
 DLLFUNC FLOAT SpringScript_GetVarValFloat(HSPRINGSCRIPTVAR var);
+DLLFUNC VOID SpringScript_GetVarValFloat2(HSPRINGSCRIPTVAR var, FLOAT *p);
 DLLFUNC INT SpringScript_GetVarValHnd(HSPRINGSCRIPTVAR var);
 DLLFUNC HSPRINGSCRIPTVAR SpringScript_GetVarValRef(HSPRINGSCRIPTVAR var);
 DLLFUNC BOOL SpringScript_SetVarVal(HSPRINGSCRIPTVAR var, const void *val, VarType type);

@@ -22,13 +22,14 @@ EXPORTS
 	SpringScript_Evalf
 	SpringScript_GetCmdArgCount
 	SpringScript_GetCmdName
-	SpringScript_GetCmdNameType
+	SpringScript_GetCmdNameLen
 	SpringScript_GetCmdArgType
 	SpringScript_GetCmdArgPtr
 	SpringScript_GetVarValInt
 	SpringScript_GetVarValStr
 	SpringScript_GetVarValStrLen
 	SpringScript_GetVarValFloat
+	SpringScript_GetVarValFloat2
 	SpringScript_GetVarValHnd
 	SpringScript_GetVarValRef
 	SpringScript_SetVarVal
