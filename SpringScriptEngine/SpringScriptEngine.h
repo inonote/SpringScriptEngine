@@ -88,6 +88,8 @@ DLLFUNC BOOL SpringScript_GetLineNum(HSPRINGSCRIPT hSpringScript, size_t *pVal);
 DLLFUNC BOOL SpringScript_Eval(HSPRINGSCRIPT hSpringScript, const char *pszExpression, int *out);
 DLLFUNC BOOL SpringScript_Evalf(HSPRINGSCRIPT hSpringScript, const char *pszExpression, float *out);
 DLLFUNC UINT SpringScript_GetCmdArgCount(HCOMMANDARG hArg);
+DLLFUNC BOOL SpringScript_GetCmdName(HCOMMANDARG hArg, char *lpString, int nMaxCount);
+DLLFUNC INT SpringScript_GetCmdNameLen(HCOMMANDARG hArg);
 DLLFUNC VarType SpringScript_GetCmdArgType(HCOMMANDARG hArg, int index);
 DLLFUNC HSPRINGSCRIPTVAR SpringScript_GetCmdArgPtr(HCOMMANDARG hArg, int index);
 DLLFUNC INT SpringScript_GetVarValInt(HSPRINGSCRIPTVAR var);

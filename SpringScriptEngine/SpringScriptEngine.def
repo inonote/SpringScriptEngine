@@ -21,6 +21,8 @@ EXPORTS
 	SpringScript_Eval
 	SpringScript_Evalf
 	SpringScript_GetCmdArgCount
+	SpringScript_GetCmdName
+	SpringScript_GetCmdNameType
 	SpringScript_GetCmdArgType
 	SpringScript_GetCmdArgPtr
 	SpringScript_GetVarValInt
