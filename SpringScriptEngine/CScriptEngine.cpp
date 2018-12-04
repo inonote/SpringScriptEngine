@@ -47,6 +47,24 @@ bool CScriptEngine::Load(const char *sFilename) {
 	return true;
 }
 
+/*! @brief メモリからスクリプトを読み込む
+@param[in] buf 文字列バッファ
+@return 成功時true、失敗時false。
+*/
+bool CScriptEngine::LoadFromMem(const char *buf) {
+	if (buf == 0)
+		return false;
+
+	m_Buf = buf;
+	m_Buf += string("\r\n");
+	m_uBufSize = m_Buf.length();
+
+	m_sFilename = "";
+	m_label.clear();
+	CheckAllLabels();
+	return true;
+}
+
 /*! @brief スクリプトを実行
 @return 常にtrue
 */

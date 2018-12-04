@@ -33,6 +33,7 @@ public:
 	CScriptEngine();
 	~CScriptEngine();
 	bool Load(const char *sFilename);
+	bool LoadFromMem(const char *buf);
 	bool Run();
 	bool RegisterCommand(const std::string &name, const std::string &prm, seCOMMAND pFunc, void *arg);
 	bool UnregisterCommand(const std::string &name);

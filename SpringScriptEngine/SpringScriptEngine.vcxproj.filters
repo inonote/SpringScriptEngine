@@ -55,7 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="SpringScriptEngine.def">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </None>
   </ItemGroup>
 </Project>

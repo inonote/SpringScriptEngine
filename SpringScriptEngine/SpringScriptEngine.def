@@ -5,6 +5,7 @@ EXPORTS
 	SpringScript_DestroyInstance
 	SpringScript_SetErrorCallbk
 	SpringScript_Load
+	SpringScript_LoadFromMem
 	SpringScript_Run
 	SpringScript_Break
 	SpringScript_Exit

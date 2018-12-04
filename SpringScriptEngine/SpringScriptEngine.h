@@ -72,6 +72,7 @@ DLLFUNC HSPRINGSCRIPT SpringScript_CreateInstance();
 DLLFUNC BOOL SpringScript_DestroyInstance(HSPRINGSCRIPT hSpringScript);
 DLLFUNC BOOL SpringScript_SetErrorCallbk(HSPRINGSCRIPT hSpringScript, HWND hWnd, ErrorCallbk pFunc, void *pUserData);
 DLLFUNC BOOL SpringScript_Load(HSPRINGSCRIPT hSpringScript, const char *pszFileName);
+DLLFUNC BOOL SpringScript_LoadFromMem(HSPRINGSCRIPT hSpringScript, const char *buf);
 DLLFUNC BOOL SpringScript_Run(HSPRINGSCRIPT hSpringScript);
 DLLFUNC BOOL SpringScript_Break(HSPRINGSCRIPT hSpringScript);
 DLLFUNC BOOL SpringScript_Exit(HSPRINGSCRIPT hSpringScript);
