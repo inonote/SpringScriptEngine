@@ -8,4 +8,4 @@ C++とHSP3のサンプルコード付属
   - WindowsAPIをあまり使用してないので、ソースコードを弄ることでほかの環境にも移植することができます。
 
 ## リンク
-リファレンス [inonote.github.io/SpringScriptEngine/doc/index.html](https://inonote.github.io/SpringScriptEngine/doc/index.html)
+リファレンス [inonote.jp/SpringScriptEngine/doc/index.html](https://inonote.jp/SpringScriptEngine/doc/index.html)
